@@ -26,19 +26,22 @@ const MovieDetails = () => {
 
 
     return (
-        <div>
-            <Link to="/">Go back</Link>
+        <>
+            <Link to="/">← Go back</Link>
             {currentMovie && (
                 <div>
-                    <h2>{currentMovie.title} ({currentMovie.release_date.split('-')[0]})</h2>
-                    <p>User score: {Math.round(currentMovie.vote_average*10)}%</p>
-                    <h3>Overview</h3>
-                    <p>{currentMovie.overview}</p>
-                    <h3>Genres</h3>
-                    <ul>{currentMovie.genres.map(genre => (<li key={genre.id}>{genre.name}</li>))}</ul>
+                    <img src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`} alt="poster"/>
+                    <div>
+                        <h2>{currentMovie.title} ({currentMovie.release_date.split('-')[0]})</h2>
+                        <p>User score: {Math.round(currentMovie.vote_average*10)}%</p>
+                        <h3>Overview</h3>
+                        <p>{currentMovie.overview}</p>
+                        <h3>Genres</h3>
+                        <ul>{currentMovie.genres.map(genre => (<li key={genre.id}>{genre.name}</li>))}</ul>
+                    </div>
                 </div>
             )}
-        </div>
+        </>
     )
 }
 
