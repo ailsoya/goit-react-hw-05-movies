@@ -1,8 +1,8 @@
 import Home from 'pages/Home'
 import Movies from 'pages/Movies'
 import MovieDetails from 'pages/MovieDetails/MovieDetails'
-import { Cast } from '../pages/MovieDetails/Cast'
-import { Reviews } from '../pages/MovieDetails/Reviews'
+import Cast from '../pages/MovieDetails/Cast'
+import Reviews from '../pages/MovieDetails/Reviews'
 import { Routes, Route, NavLink  } from "react-router-dom"
 import styles from 'Style.module.css'
 
@@ -19,7 +19,7 @@ export const App = () => {
         <Route path="/movies" element={<Movies />} />
         <Route path="/movies/:movieId" element={<MovieDetails />} >
           <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />s
+          <Route path="reviews" element={<Reviews />} />
         </Route>
       </Routes>
     </div>

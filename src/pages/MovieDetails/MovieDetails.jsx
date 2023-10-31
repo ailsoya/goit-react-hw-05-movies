@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate, Link, Outlet } from "react-router-dom"
 import { useState, useEffect, React } from "react"
-import { Link } from "react-router-dom"
 import styles from 'Style.module.css'
 
 const MovieDetails = () => {
     const { movieId } = useParams()
     const [ currentMovie, setMovie ] = useState('')
+    const navigate  = useNavigate()
 
     useEffect(() => {
         const options = {
@@ -19,16 +19,17 @@ const MovieDetails = () => {
         fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
             .then(response => response.json())
             .then(response => {
-                setMovie(response)
-                //console.log(response)
-            })
+                const { id, title, release_date, poster_path, vote_average, overview, genres } = response
+                const film = { id: id, title: title, release_date: release_date, poster_path: poster_path, vote_average: vote_average, overview: overview, genres: genres }
+                setMovie(film)
+                })
             .catch(err => console.error(err))
       }, [movieId])
 
 
     return (
         <>
-            <Link to="/" className={styles.Back}>← Go back</Link>
+            <button className={styles.Back} onClick={() => navigate('/')}>← Go Back</button>
             {currentMovie && (
                 <div className={styles.Card}>
                     <img src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`} alt="poster"/>
@@ -42,6 +43,14 @@ const MovieDetails = () => {
                     </div>
                 </div>
             )}
+            <hr />
+            <p>Additional information</p>
+            <ul>
+                <Link to='cast'><li>Cast</li></Link>
+                <Link to='reviews'><li>Reviews</li></Link>
+            </ul>
+            <hr />
+            <Outlet />
         </>
     )
 }

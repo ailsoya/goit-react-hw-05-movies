@@ -16,7 +16,14 @@ const Home = () => {
 
         fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
             .then(response => response.json())
-            .then(response => setList(response.results))
+            .then(response => {
+                // eslint-disable-next-line array-callback-return
+                response.results.map((result, index, films) => {
+                    const { id, title } = result
+                    films[index] = { id: id, title: title }
+                    setList(films)
+                })
+            })
             .catch(err => console.error(err))
       }, [])
 
