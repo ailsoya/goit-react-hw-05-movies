@@ -17,6 +17,7 @@ const Reviews = () => {
           fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1`, options)
             .then(response => response.json())
             .then(response => {
+                // eslint-disable-next-line array-callback-return
                 response.results.map((result, index, films) => {
                     const { id, author, content } = result
                     films[index] = { id: id, author: author, content: content }
