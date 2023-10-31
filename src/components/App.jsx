@@ -4,11 +4,12 @@ import MovieDetails from 'pages/MovieDetails/MovieDetails'
 import { Cast } from '../pages/MovieDetails/Cast'
 import { Reviews } from '../pages/MovieDetails/Reviews'
 import { Routes, Route, NavLink  } from "react-router-dom"
+import styles from 'Style.module.css'
 
 export const App = () => {
   return (
     <div>
-      <nav>
+      <nav className={styles.Nav}>
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/movies">Movies</NavLink>
       </nav>

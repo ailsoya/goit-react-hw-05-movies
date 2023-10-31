@@ -1,5 +1,6 @@
 import { useState, useEffect, React } from "react"
 import { Link } from "react-router-dom"
+import styles from 'Style.module.css'
 
 const Home = () => {
     const [list, setList] = useState([])
@@ -21,10 +22,10 @@ const Home = () => {
 
     return (
         <>
-            <h2>Trending today</h2>
+            <h2 className={styles.Title}>Trending today</h2>
             {list.length > 0 && (
-                <ul>
-                    {list.map(film => ( <li key={film.id}><Link to={`/movies/${film.id}`}>{film.title}</Link></li> ))}
+                <ul className={styles.Prop}>
+                    {list.map(film => ( <li key={film.id}><Link to={`/movies/${film.id}`} className={styles.Obj}>{film.title}</Link></li> ))}
                 </ul>
             )}
         </>

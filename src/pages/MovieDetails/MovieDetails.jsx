@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect, React } from "react"
 import { Link } from "react-router-dom"
+import styles from 'Style.module.css'
 
 const MovieDetails = () => {
     const { movieId } = useParams()
@@ -27,9 +28,9 @@ const MovieDetails = () => {
 
     return (
         <>
-            <Link to="/">← Go back</Link>
+            <Link to="/" className={styles.Back}>← Go back</Link>
             {currentMovie && (
-                <div>
+                <div className={styles.Card}>
                     <img src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`} alt="poster"/>
                     <div>
                         <h2>{currentMovie.title} ({currentMovie.release_date.split('-')[0]})</h2>
@@ -37,7 +38,7 @@ const MovieDetails = () => {
                         <h3>Overview</h3>
                         <p>{currentMovie.overview}</p>
                         <h3>Genres</h3>
-                        <ul>{currentMovie.genres.map(genre => (<li key={genre.id}>{genre.name}</li>))}</ul>
+                        <ul className={styles.Genres}>{currentMovie.genres.map(genre => (<li key={genre.id}>{genre.name}</li>))}</ul>
                     </div>
                 </div>
             )}
