@@ -22,6 +22,7 @@ const MovieDetails = () => {
                 const { id, title, release_date, poster_path, vote_average, overview, genres } = response
                 const film = { id: id, title: title, release_date: release_date, poster_path: poster_path, vote_average: vote_average, overview: overview, genres: genres }
                 setMovie(film)
+                console.log(location)
                 })
             .catch(err => console.error(err))
       }, [movieId])
