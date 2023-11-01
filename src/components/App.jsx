@@ -5,13 +5,21 @@ import Cast from '../pages/MovieDetails/Cast'
 import Reviews from '../pages/MovieDetails/Reviews'
 import { Routes, Route, NavLink  } from "react-router-dom"
 import styles from 'Style.module.css'
+import styled from "styled-components"
 
 export const App = () => {
+  const StyledLink = styled(NavLink)`
+  color: black;
+
+  &.active {
+    color: crimson;
+  }
+`
   return (
     <div>
       <nav className={styles.Nav}>
-        <NavLink to="/" end>Home</NavLink>
-        <NavLink to="/movies">Movies</NavLink>
+        <StyledLink to="/" end>Home</StyledLink>
+        <StyledLink to="/movies">Movies</StyledLink>
       </nav>
 
       <Routes>

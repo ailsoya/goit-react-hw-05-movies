@@ -17,7 +17,14 @@ const Cast = () => {
           
           fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, options)
             .then(response => response.json())
-            .then(response => setCast(response.cast))
+            .then(response => {
+                // eslint-disable-next-line array-callback-return
+                response.cast.map((actor, index, actors) => {
+                    const { id, name, character, profile_path } = actor
+                    actors[index] = { id: id, name: name, character: character, profile_path: profile_path }
+                    setCast(actors)
+                })
+            })
             .catch(err => console.error(err));
     }, [id])
 
