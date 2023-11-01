@@ -32,7 +32,7 @@ const Home = () => {
             <h2 className={styles.Title}>Trending today</h2>
             {list.length > 0 && (
                 <ul className={styles.Prop}>
-                    {list.map(film => ( <li key={film.id}><Link to={`/movies/${film.id}`} className={styles.Obj}>{film.title}</Link></li> ))}
+                    {list.map(film => ( <li key={film.id}><Link to={`/movies/${film.id}`} state={{ from: "/" }} className={styles.Obj}>{film.title}</Link></li> ))}
                 </ul>
             )}
         </>

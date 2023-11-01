@@ -1,11 +1,11 @@
-import { useParams, useNavigate, Link, Outlet } from "react-router-dom"
+import { useParams, useLocation, Link, Outlet } from "react-router-dom"
 import { useState, useEffect, React } from "react"
 import styles from 'Style.module.css'
 
 const MovieDetails = () => {
     const { movieId } = useParams()
     const [ currentMovie, setMovie ] = useState('')
-    const navigate  = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
         const options = {
@@ -29,7 +29,7 @@ const MovieDetails = () => {
 
     return (
         <>
-            <button className={styles.Back} onClick={() => navigate('/')}>← Go Back</button>
+            <Link to={location.state.from} className={styles.Back}>← Go Back</Link>
             {currentMovie && (
                 <div className={styles.Card}>
                     <img src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`} alt="poster"/>
@@ -46,8 +46,8 @@ const MovieDetails = () => {
             <hr />
             <p>Additional information</p>
             <ul>
-                <Link to='cast'><li>Cast</li></Link>
-                <Link to='reviews'><li>Reviews</li></Link>
+                <Link to='cast' state={{ from: location.state.from }}><li>Cast</li></Link>
+                <Link to='reviews' state={{ from: location.state.from }}><li>Reviews</li></Link>
             </ul>
             <hr />
             <Outlet />

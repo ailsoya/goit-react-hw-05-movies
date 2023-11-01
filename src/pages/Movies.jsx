@@ -47,7 +47,7 @@ const Movies = () => {
             </form>
             {results.length > 0 && (
                 <ul className={styles.Prop}>
-                    {results.map(result => ( <li key={result.id}><Link to={`/movies/${result.id}`} className={styles.Obj}>{result.title}</Link></li> ))}
+                    {results.map(result => ( <li key={result.id}><Link to={`/movies/${result.id}`} state={{ from: "/movies" }} className={styles.Obj}>{result.title}</Link></li> ))}
                 </ul>
             )}
         </div>
