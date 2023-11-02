@@ -29,7 +29,7 @@ const MovieDetails = () => {
 
     return (
         <>
-            <Link to={location.state.from} className={styles.Back}>← Go Back</Link>
+            <Link to={location.state.from} state={location.state.query} className={styles.Back}>← Go Back</Link>
             {currentMovie && (
                 <div className={styles.Card}>
                     <img src={`https://image.tmdb.org/t/p/w500${currentMovie.poster_path}`} alt="poster"/>
