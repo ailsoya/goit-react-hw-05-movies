@@ -46,8 +46,8 @@ const MovieDetails = () => {
             <hr />
             <p>Additional information</p>
             <ul>
-                <Link to='cast' state={{ from: location.state.from }}><li>Cast</li></Link>
-                <Link to='reviews' state={{ from: location.state.from }}><li>Reviews</li></Link>
+                <Link to='cast' state={{ from: location.state.from, query: location.state.query }}><li>Cast</li></Link>
+                <Link to='reviews' state={{ from: location.state.from, query: location.state.query }}><li>Reviews</li></Link>
             </ul>
             <hr />
             <Outlet />

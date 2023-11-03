@@ -10,14 +10,13 @@ const Movies = () => {
 
     const handleSubmit = evt => {
         evt.preventDefault()
-        if (query.current===null) {
-            setSearchParams({ query: evt.target.search.value })
-            query.current = evt.target.search.value
-        }
+        setSearchParams({ query: evt.target.search.value })
+        query.current = evt.target.search.value
     }
 
     useEffect(() => {
         if (query.current !== null) {
+            setSearchParams({ query: query.current })
             const options = {
                 method: 'GET',
                 headers: {
@@ -26,7 +25,7 @@ const Movies = () => {
                 }
             }
               
-            fetch(`https://api.themoviedb.org/3/search/movie?query=${query.current.current}&include_adult=true&language=en-US&page=1`, options)
+            fetch(`https://api.themoviedb.org/3/search/movie?query=${query.current}&include_adult=true&language=en-US&page=1`, options)
                 .then(response => response.json())
                 .then(response => {
                     // eslint-disable-next-line array-callback-return
@@ -38,6 +37,7 @@ const Movies = () => {
                 })
                 .catch(err => console.error(err))
         }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [])
 
     useEffect(() => {
@@ -78,7 +78,7 @@ const Movies = () => {
             </form>
             {results.length > 0 && (
                 <ul className={styles.Prop}>
-                    {results.map(result => ( <li key={result.id}><Link to={`/movies/${result.id}`} state={{ from: `/movies`, query: query }} className={styles.Obj}>{result.title}</Link></li> ))}
+                    {results.map(result => ( <li key={result.id}><Link to={`/movies/${result.id}`} state={{ from: `/movies`, query: query.current }} className={styles.Obj}>{result.title}</Link></li> ))}
                 </ul>
             )}
         </div>
